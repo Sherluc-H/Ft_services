@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-wordpress
+  labels:
+    app: svc-wordpress
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    name: wordpress
+    targetPort: 5050
+    nodePort: 32755
+  selector:
+    app: wordpress
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    name: wordpress
+spec:
+  replicas: 3
+  selector:
+    matchlabels:
+    app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - name: wordpress-container
+        image: wordpress:alpine
+        ports:
+        - containerPort: 5050
