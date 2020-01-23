@@ -13,4 +13,10 @@ RUN mkdir -p /srv/ftp
 RUN chmod -R 777 /srv/ftp
 RUN chmod 775 /srv
 RUN echo "test" > /srv/ftp/test.txt
-ENTRYPOINT rc boot && rc-service vsftpd restart && /bin/sh
+RUN rc boot
+RUN rc-update add vsftpd default
+RUN mv /etc/runlevels/default/vsftpd /etc/runlevels/default/vsftpd_old
+COPY ./srcs/vsftpd /etc/runlevels/default
+RUN cd /etc/runlevels/default && cat vsftpd > vsftpd_old
+ENTRYPOINT rc-service vsftpd restart && /bin/sh
+#ENTRYPOINT vsftpd /etc/vsftpd/vsftpd.conf && /bin/sh

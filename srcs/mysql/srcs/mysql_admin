@@ -1,4 +1,4 @@
-create user 'admin'@'localhost' identified by 'pwd';
-grant all privileges on *.* to 'admin'@'localhost';
+create user 'admin'@'%' identified by 'pwd';
+grant all privileges on *.* to 'admin'@'%';
 flush privileges;
 create database wordpress;

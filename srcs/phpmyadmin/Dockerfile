@@ -11,13 +11,16 @@ RUN apk update \
 	&& apk add vim
 RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf_old
 COPY ./srcs/default.conf /etc/nginx/conf.d
+COPY ./srcs/nginx.conf /etc/nginx
 COPY ./srcs/index.php /var/www/localhost/htdocs/
 RUN cd /var/www/localhost/htdocs \
 	&& wget https://files.phpmyadmin.net/phpMyAdmin/4.9.4/phpMyAdmin-4.9.4-all-languages.tar.gz \
 	&& tar -zxvf phpMyAdmin-4.9.4-all-languages.tar.gz \
 	&& mv phpMyAdmin-4.9.4-all-languages phpmyadmin \
 	&& rm  phpMyAdmin-4.9.4-all-languages.tar.gz
+COPY ./srcs/config.inc.php /var/www/localhost/htdocs/phpmyadmin
 RUN rc boot
 RUN rc-update add nginx default
 RUN rc-update add php-fpm7 default
+#RUN cd /etc/nginx/ && echo "daemon off;" > tmp && cat nginx.conf >> tmp && cat tmp > nginx.conf
 ENTRYPOINT rc-service php-fpm7 restart && rc-service nginx restart && /bin/sh

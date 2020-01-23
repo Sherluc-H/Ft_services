@@ -10,11 +10,13 @@ RUN apk update \
 	&& apk add vim
 RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf_old
 COPY ./srcs/default.conf /etc/nginx/conf.d
+RUN cd /etc/nginx && echo "daemon off;" > temp && cat nginx.conf >> temp && cat temp > nginx.conf
 COPY ./srcs/index.php /var/www/localhost/htdocs
 RUN cd /var/www/localhost/htdocs \
 	&& wget https://fr.wordpress.org/latest-fr_FR.tar.gz \
 	&& tar -xzvf latest-fr_FR.tar.gz \
 	&& rm latest-fr_FR.tar.gz
+COPY ./srcs/wp-config.php /var/www/localhost/htdocs/wordpress
 RUN rc boot
 RUN rc-update add nginx default
 RUN rc-update add php-fpm7 default

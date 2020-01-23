@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ftps
+  labels:
+    app: ftps
+spec:
+  type: NodePort
+  ports:
+  - port: 21
+    name: ftps21
+    targetPort: 21
+  - port: 30180
+    name: ftps-pasv-30180
+    nodePort: 30180
+    targetPort: 30180
+  - port: 30181
+    name: ftps-pasv-30181
+    targetPort: 30181
+    nodePort: 30181
+  - port: 30182
+    name: ftps-pasv-30182
+    targetPort: 30182
+    nodePort: 30182
+  - port: 30183
+    name: ftps-pasv-30183
+    targetPort: 30183
+    nodePort: 30183
+  selector:
+    app: ftps
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ftps
+  labels:
+    name: ftps
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ftps
+  template:
+    metadata:
+      labels:
+        app: ftps
+    spec:
+      containers:
+      - name: ftps
+        image: ftps:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 21
+        - containerPort: 30180
+        - containerPort: 30181
+        - containerPort: 30182
+        - containerPort: 30183
