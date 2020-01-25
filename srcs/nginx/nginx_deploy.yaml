@@ -7,10 +7,11 @@ metadata:
 spec:
   type: NodePort
   ports:
+  - port: 20
+    name: nginx-ssh20
   - port: 80
     name: nginx80
     targetPort: 80
-#    nodePort: 32756
   - port: 443
     name: nginx443
     targetPort: 443
@@ -24,7 +25,7 @@ metadata:
   labels:
     name: nginx
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
@@ -38,5 +39,7 @@ spec:
         image: nginx:latest
         imagePullPolicy: Never
         ports:
+        - containerPort: 20
+          hostPort: 20
         - containerPort: 80
         - containerPort: 443

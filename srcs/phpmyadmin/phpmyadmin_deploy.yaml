@@ -9,7 +9,8 @@ spec:
   ports:
   - port: 5000
     name: phpmyadmin5000
-    targetPort: 5000
+#    targetPort: 5000
+#    nodePort:5000
   selector:
     app: phpmyadmin
 ---
@@ -35,3 +36,4 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 5000
+#          hostPort: 5000

@@ -9,7 +9,7 @@ spec:
   ports:
   - port: 5050
     name: wordpress5050
-    targetPort: 5050
+#    targetPort: 5050
   selector:
     app: wordpress
 ---
@@ -35,3 +35,4 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 5050
+#          hostPort: 5050

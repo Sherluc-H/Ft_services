@@ -18,5 +18,6 @@ RUN rc-update add vsftpd default
 RUN mv /etc/runlevels/default/vsftpd /etc/runlevels/default/vsftpd_old
 COPY ./srcs/vsftpd /etc/runlevels/default
 RUN cd /etc/runlevels/default && cat vsftpd > vsftpd_old
-ENTRYPOINT rc-service vsftpd restart && /bin/sh
-#ENTRYPOINT vsftpd /etc/vsftpd/vsftpd.conf && /bin/sh
+#ENTRYPOINT rc-service vsftpd restart && /bin/sh
+ENTRYPOINT vsftpd /etc/vsftpd/vsftpd.conf && /bin/sh
+#ENTRYPOINT /bin/sh

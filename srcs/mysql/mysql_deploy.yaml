@@ -7,6 +7,7 @@ metadata:
 spec:
   ports:
   - port: 3306
+    name: mysql3306
   selector:
     app: mysql
 ---
@@ -21,6 +22,8 @@ spec:
   selector:
     matchLabels:
       app: mysql
+#  strategy:
+#    type: Recreate
   template:
     metadata:
       labels:
@@ -30,3 +33,11 @@ spec:
       - name: mysql
         image: mysql:latest
         imagePullPolicy: Never
+#        volumeMounts:
+#        - mountPath: /var/lib/mysql
+#          name: mysql-pv
+#      volumes:
+#     - name: mysql-pv
+#        persistentVolumeClaim:
+#          claimName: mysql-pvc
+#      restartPolicy: Always

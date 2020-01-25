@@ -5,27 +5,32 @@ metadata:
   labels:
     app: ftps
 spec:
-  type: NodePort
+#  type: NodePort
   ports:
   - port: 21
     name: ftps21
-    targetPort: 21
-  - port: 30180
-    name: ftps-pasv-30180
-    nodePort: 30180
-    targetPort: 30180
-  - port: 30181
-    name: ftps-pasv-30181
-    targetPort: 30181
-    nodePort: 30181
-  - port: 30182
-    name: ftps-pasv-30182
-    targetPort: 30182
-    nodePort: 30182
-  - port: 30183
-    name: ftps-pasv-30183
-    targetPort: 30183
-    nodePort: 30183
+  - port: 64000
+    name: ftps-pasv-64000
+  - port: 64001
+    name: ftps-pasv-64001
+  - port: 64002
+    name: ftps-pasv-64002
+  - port: 64003
+    name: ftps-pasv-64003
+  - port: 64004
+    name: ftps-pasv-64004
+  - port: 64005
+    name: ftps-pasv-64005
+  - port: 64006
+    name: ftps-pasv-64006
+  - port: 64007
+    name: ftps-pasv-64007
+  - port: 64008
+    name: ftps-pasv-64008
+  - port: 64009
+    name: ftps-pasv-64009
+  - port: 64010
+    name: ftps-pasv-64010
   selector:
     app: ftps
 ---
@@ -36,7 +41,7 @@ metadata:
   labels:
     name: ftps
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: ftps
@@ -51,7 +56,26 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 21
-        - containerPort: 30180
-        - containerPort: 30181
-        - containerPort: 30182
-        - containerPort: 30183
+          hostPort: 21
+        - containerPort: 64000
+          hostPort: 64000
+        - containerPort: 64001
+          hostPort: 64001
+        - containerPort: 64002
+          hostPort: 64002
+        - containerPort: 64003
+          hostPort: 64003
+        - containerPort: 64004
+          hostPort: 64004
+        - containerPort: 64005
+          hostPort: 64005
+        - containerPort: 64006
+          hostPort: 64006
+        - containerPort: 64007
+          hostPort: 64007
+        - containerPort: 64008
+          hostPort: 64008
+        - containerPort: 64009
+          hostPort: 64009
+        - containerPort: 64010
+          hostPort: 64010
