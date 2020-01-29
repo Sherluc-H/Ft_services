@@ -33,11 +33,11 @@ spec:
       - name: mysql
         image: mysql:latest
         imagePullPolicy: Never
-#        volumeMounts:
-#        - mountPath: /var/lib/mysql
-#          name: mysql-pv
-#      volumes:
-#     - name: mysql-pv
-#        persistentVolumeClaim:
-#          claimName: mysql-pvc
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: mysql-pv
+      volumes:
+      - name: mysql-pv
+        persistentVolumeClaim:
+          claimName: mysql-pvc
 #      restartPolicy: Always

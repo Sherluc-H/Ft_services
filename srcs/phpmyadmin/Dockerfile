@@ -19,6 +19,7 @@ RUN cd /var/www/localhost/htdocs \
 	&& mv phpMyAdmin-4.9.4-all-languages phpmyadmin \
 	&& rm  phpMyAdmin-4.9.4-all-languages.tar.gz
 COPY ./srcs/config.inc.php /var/www/localhost/htdocs/phpmyadmin
+RUN cd /var/www/localhost/htdocs/phpmyadmin && mkdir tmp && chmod 777 tmp
 RUN rc boot
 RUN rc-update add nginx default
 RUN rc-update add php-fpm7 default
