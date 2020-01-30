@@ -7,7 +7,7 @@ metadata:
 spec:
   ports:
   - port: 8086
-    name: influxdb8086
+    name: influx8086
   selector:
     app: influxdb
 ---
@@ -29,7 +29,21 @@ spec:
     spec:
       containers:
       - name: influxdb
-        image: influxdb:1.7.6-alpine
-        ports:
-        - containerPort: 8086
-          hostPort: 8086
+        image: influxdb:alpine
+        volumeMounts:
+        - mountPath: /var/lib/influxdb
+          name: influxdb-pv
+        - mountPath: /etc/influxdb/influxdb.conf
+          name: influxdb-config
+          subPath: influxdb.conf
+          readOnly: true
+        envFrom:
+        - secretRef:
+            name: influxdb-secrets
+      volumes:
+      - name: influxdb-pv
+        persistentVolumeClaim:
+          claimName: influxdb-pvc
+      - name: influxdb-config
+        configMap:
+          name: influxdb-config 

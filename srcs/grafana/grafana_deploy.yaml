@@ -32,6 +32,8 @@ spec:
       containers:
       - name: grafana
         image: grafana/grafana
+        #image: graf
+        #imagePullPolicy: Never
         ports:
         - containerPort: 3000
           hostPort: 3000
