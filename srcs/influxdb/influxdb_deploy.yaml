@@ -22,6 +22,7 @@ spec:
   selector:
     matchLabels:
       app: influxdb
+  minReadySeconds: 5
   template:
     metadata:
       labels:
