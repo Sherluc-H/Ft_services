@@ -35,4 +35,4 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 5050
-#          hostPort: 5050
+          hostPort: 5050

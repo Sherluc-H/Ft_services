@@ -16,8 +16,8 @@ COPY ./srcs/run.sh /
 COPY ./srcs/mysql_admin /
 RUN rc-update add mariadb default
 COPY ./srcs/maria_default_run /etc/runlevels/default
-COPY ./srcs/wordpress.sql /
-COPY ./srcs/change_ip /
+COPY ./srcs/wordpress_clean.sql /
+#COPY ./srcs/change_ip /
 ##RUN rc-service mariadb start && ./run.sh
 ##RUN cd /etc/runlevels/default && cat maria_default_run > mariadb
 ENTRYPOINT ./run.sh && cd /etc/runlevels/default && cat maria_default_run > mariadb && rc-service mariadb restart && /bin/sh

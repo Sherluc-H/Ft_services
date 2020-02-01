@@ -1,3 +1,7 @@
+minikube delete
+minikube start --vm-driver=virtualbox
+minikube addons enable ingress
+minikube addons enable metrics-server
 cd ./srcs && ./apply_ingress.sh
 cd ./nginx && ./build_image.sh && cd ..
 cd ./ftps && ./build_image.sh && cd ..
@@ -7,3 +11,4 @@ cd ./wordpress && ./build_image.sh && cd ..
 cd ./influxdb && ./build_image.sh && cd ..
 cd ./telegraf && ./build_image.sh && cd ..
 cd ./grafana && ./build_image.sh && cd ..
+minikube dashboard

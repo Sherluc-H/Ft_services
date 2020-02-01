@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: nginx-ingress
   annotations:
-    #nginx.ingress.kubernetes.io/rewrite-target: /
+#    nginx.ingress.kubernetes.io/rewrite-target: /
     #nginx.ingress.kubernetes.io/ssl-redirect: "true"
     #nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     #nginx.ingress.kubernetes.io/proxy-ssl-verify: "on"
@@ -15,19 +15,3 @@ spec:
         backend:
           serviceName: nginx
           servicePort: 80
-      - path: /wordpress
-        backend:
-          serviceName: wordpress
-          servicePort: 5050
-      - path: /phpmyadmin
-        backend:
-          serviceName: phpmyadmin
-          servicePort: 5000
-#      - path: /grafana
-#        backend:
-#          serviceName: grafana
-#          servicePort: 3000
-      - path: /ssl
-        backend:
-          serviceName: nginx
-          servicePort: 443

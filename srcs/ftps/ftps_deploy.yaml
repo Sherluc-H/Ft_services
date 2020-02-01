@@ -79,3 +79,10 @@ spec:
           hostPort: 64009
         - containerPort: 64010
           hostPort: 64010
+        volumeMounts:
+        - mountPath: /srv
+          name: ftps-pv
+      volumes:
+      - name: ftps-pv
+        persistentVolumeClaim:
+          claimName: ftps-pvc
