@@ -5,7 +5,6 @@ metadata:
   labels:
     app: ftps
 spec:
-#  type: NodePort
   ports:
   - port: 21
     name: ftps21

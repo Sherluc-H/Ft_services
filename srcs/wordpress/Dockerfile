@@ -20,7 +20,5 @@ COPY ./srcs/wp-config.php /var/www/localhost/htdocs/wordpress
 RUN rc boot
 RUN rc-update add nginx default
 RUN rc-update add php-fpm7 default
-#RUN rc-service nginx restart
-#RUN rc-service php-fpm7 restart
 COPY ./srcs/run.sh /
 ENTRYPOINT ./run.sh && /bin/sh

@@ -22,5 +22,4 @@ RUN cd /var/www/localhost/htdocs/phpmyadmin && mkdir tmp && chmod 777 tmp
 RUN rc boot
 RUN rc-update add nginx default
 RUN rc-update add php-fpm7 default
-#RUN cd /etc/nginx/ && echo "daemon off;" > tmp && cat nginx.conf >> tmp && cat tmp > nginx.conf
 ENTRYPOINT rc-service php-fpm7 restart && rc-service nginx restart && /bin/sh

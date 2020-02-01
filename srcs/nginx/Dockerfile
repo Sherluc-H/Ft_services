@@ -15,7 +15,6 @@ RUN mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf_old
 COPY ./srcs/nginx.conf /etc/nginx
 RUN mkdir -p /var/www/html
 COPY ./srcs/index.html /var/www/html
-#COPY ./srcs/index2.html /var/www/html
 COPY ./srcs/run.sh /
 COPY ./srcs/root.info /
 COPY ./srcs/sshd_config /etc/ssh

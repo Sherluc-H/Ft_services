@@ -10,9 +10,5 @@ RUN mv /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf_old
 COPY ./srcs/vsftpd.conf /etc/vsftpd/
 COPY ./srcs/minikube_ip /etc/vsftpd/
 RUN cd /etc/vsftpd && cat minikube_ip >> vsftpd.conf
-#RUN mkdir -p /srv/ftp
-#RUN chmod -R 777 /srv/ftp
-#RUN chmod 775 /srv
-#ENTRYPOINT mkdir -p /srv/ftp && chmod -R 777 /srv/ftp && chmod 775 /srv &&  vsftpd /etc/vsftpd/vsftpd.conf
 COPY ./srcs/run.sh /
 ENTRYPOINT ./run.sh && vsftpd /etc/vsftpd/vsftpd.conf && /bin/sh

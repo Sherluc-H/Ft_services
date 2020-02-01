@@ -23,8 +23,6 @@ spec:
     matchLabels:
       app: mysql
   minReadySeconds: 5
-#  strategy:
-#    type: Recreate
   template:
     metadata:
       labels:
@@ -41,4 +39,3 @@ spec:
       - name: mysql-pv
         persistentVolumeClaim:
           claimName: mysql-pvc
-#      restartPolicy: Always

@@ -1,3 +1,0 @@
-use wordpress;
-update wp_options set option_value = "http://192.168.99.132/wordpress" where option_id = 1;
-update wp_options set option_value = "http://192.168.99.132/wordpress" where option_id = 2;

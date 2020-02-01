@@ -5,5 +5,4 @@ then
 	rc-service mariadb start
 	mysql -u root < mysql_admin
 	mysql -u root wordpress < wordpress_clean.sql
-#	mysql -u root < change_ip
 fi

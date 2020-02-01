@@ -5,19 +5,14 @@ metadata:
   labels:
     app: nginx
 spec:
-#  type: NodePort
   ports:
   - port: 20
     name: nginx-ssh20
-#    targetPort: 20
-#    nodePort: 20
   - port: 80
     name: nginx80
     targetPort: 80
-#    nodePort: 80
   - port: 443
     name: nginx443
-#    nodePort: 443
     targetPort: 443
   selector:
     app: nginx
